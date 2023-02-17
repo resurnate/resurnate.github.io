@@ -28,10 +28,15 @@ function loadStripDiv(index) {
     headerH2Element.innerText = strip.title;
     headerDivElement.append(headerH2Element);
     let headerPElement = document.createElement('p');
+    let headerAElement = document.createElement('a');
+    headerAElement.target = '_blank';
+    let urlFacebook = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2Fcomic%2F'+strip.id+'&amp;src=sdkpreparse';
+    headerAElement.href = urlFacebook;
     let headerIElement = document.createElement('i');
     headerIElement.className = 'fa-brands fa-facebook-square fa-2x';
     headerIElement.style = 'color: #1877F2';
-    headerPElement.append(headerIElement);
+    headerAElement.append(headerIElement)
+    headerPElement.append(headerAElement);
     headerDivElement.append(headerPElement);
     divElement.append(headerDivElement);
     // Image

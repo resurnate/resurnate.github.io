@@ -5,11 +5,11 @@ const galleryMetadata = [
     title:'The Sound Of Silence',
     description:'I&#39;m fairly certain anyone that isn&#39;t a hermit living under a rock, can relate. However, ' +
         'this does seem to impact the fairer sex more. I&#39;ll leave that up to you to decide who that fairer sex ' +
-        'is... shots fired! Unfortunately, this is exactly what happened the other night, with "It&#39;s called a ' +
-        'fucking arm!" straight from the horses mouth (probably a poor choice of words on my part). After the dust ' +
-        'settled, we laughed so hard. Bravo! Look at you and your wit. Having said that, I&#39;m still not conceding ' +
-        'who the fairer sex is, but I&#39;ll take responsibility for this. In fact, let this serve as a blanket ' +
-        'apology for every prior, and let&#39;s face it, future occurrence.'
+        'is... shots fired! Unfortunately, this is exactly what happened the other night, with &#34;It&#39;s called ' +
+        'a fucking arm!&#34; straight from the horses mouth (probably a poor choice of words on my part). After the ' +
+        'dust settled, we laughed so hard. Bravo! Look at you and your wit. Having said that, I&#39;m still not ' +
+        'conceding who the fairer sex is, but I&#39;ll take responsibility for this. In fact, let this serve as a ' +
+        'blanket apology for every prior, and let&#39;s face it, future occurrence.'
   },
   {
     id:'2023001',
