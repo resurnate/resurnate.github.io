@@ -46,7 +46,7 @@
   color: #41b6e6;
 }
 
-.stripQuote span {
+.stripQuote {
   text-align: justify;
   text-justify: inter-word;
 }
