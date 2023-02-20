@@ -30,8 +30,7 @@ function loadStripDiv(index) {
     let headerPElement = document.createElement('p');
     let headerAElement = document.createElement('a');
     headerAElement.target = '_blank';
-    let urlFacebook = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2Fcomic%2F'+strip.id+'&amp;src=sdkpreparse';
-    headerAElement.href = urlFacebook;
+    headerAElement.href = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2Fcomic%2F'+strip.id+'&amp;src=sdkpreparse';
     let headerIElement = document.createElement('i');
     headerIElement.className = 'fa-brands fa-facebook-square fa-2x';
     headerIElement.style = 'color: #1877F2';
@@ -53,9 +52,9 @@ function loadStripDiv(index) {
     let quoteIElement = document.createElement('i');
     quoteIElement.className = 'fa-solid fa-quote-left fa-3x fa-border fa-pull-left';
     quoteDivElement.append(quoteIElement);
-    let quotePElement = document.createElement('p');
-    quotePElement.innerHTML = strip.description;
-    quoteDivElement.append(quotePElement);
+    let quoteSpanElement = document.createElement('span');
+    quoteSpanElement.innerHTML = strip.description;
+    quoteDivElement.append(quoteSpanElement);
     divElement.append(quoteDivElement);
     return divElement;
   }
@@ -151,14 +150,17 @@ function loadGalleryBoundary(isStart) {
     let divElement = document.createElement('div');
     divElement.id = boundaryElementId;
     divElement.className = galleryElementId + 'Boundary';
-    let pElement = document.createElement('p');
-    divElement.append(pElement);
+    let spanElement = document.createElement('span');
+    divElement.append(spanElement);
     let galleryElement = document.getElementById(galleryElementId);
+    let brElement = document.createElement('br');
     if (isStart) {
-      pElement.innerText = 'Start of gallery';
+      spanElement.innerText = 'Start of gallery';
       galleryElement.prepend(divElement);
+      galleryElement.prepend(brElement);
     } else {
-      pElement.innerText = 'End of gallery';
+      spanElement.innerText = 'End of gallery';
+      galleryElement.append(brElement);
       galleryElement.append(divElement);
     }
   }
