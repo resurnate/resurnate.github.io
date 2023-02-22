@@ -4,12 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Resurnate">
+  <meta property="og:image" content="http://www.resurnate.com/img/2023002.png">
+  <meta property="og:url" content="http://www.resurnate.com">
+  <meta property="og:description" content="The Sound Of Silence">
   <title>Resurnate</title>
   <link rel="stylesheet" href="/css/resurnate.main.css">
 </head>
 <body onload="loadGalleryStrips()" onscroll="loadMoreGalleryStrips()">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0" nonce="UphWkiHh"></script>
   <div class="header">
     <h1>Resurnate</h1>
+    <div class="fb-share-button" data-href="https://www.resurnate.com/" data-layout="button" data-size="large">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+    </div>
   </div>
   <div id="gallery"></div>
   <script type="text/javascript" src="/js/resurnate.main.js"></script>

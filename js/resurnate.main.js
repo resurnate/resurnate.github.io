@@ -107,7 +107,6 @@ function loadGalleryBoundary(isStart) {
   let boundaryElementId = isStart ? galleryElementId+'Start' : galleryElementId+'End';
   let boundaryElement = document.getElementById(boundaryElementId);
   if (!boundaryElement) {
-    let brElement = document.createElement('br');
     let divElement = document.createElement('div');
     divElement.id = boundaryElementId;
     divElement.className = galleryElementId + 'Boundary';
@@ -117,10 +116,8 @@ function loadGalleryBoundary(isStart) {
     if (isStart) {
       innerPElement.innerText = 'Start of gallery';
       galleryElement.prepend(divElement);
-      // galleryElement.prepend(brElement);
     } else {
       innerPElement.innerText = 'End of gallery';
-      // galleryElement.append(brElement);
       galleryElement.append(divElement);
     }
   }
