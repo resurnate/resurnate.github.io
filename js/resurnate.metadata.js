@@ -1,6 +1,7 @@
 const galleryMetadata = [
   {
-    name:'2023002.png',
+    id:'2023002',
+    image:'2023002.png',
     title:'The Sound Of Silence',
     description:'I&#39;m fairly certain anyone that isn&#39;t a hermit living under a rock, can relate. However, ' +
         'this does seem to impact the fairer sex more. I&#39;ll leave that up to you to decide who that fairer sex ' +
@@ -11,7 +12,8 @@ const galleryMetadata = [
         'apology for every prior, and let&#39;s face it, future occurrence.'
   },
   {
-    name:'2023001.png',
+    id:'2023001',
+    image:'2023001.png',
     title:'Experience, Meet Team',
     description:'There are days I consider myself a rock star, only to be brought crashing back to Earth courtesy of ' +
         'those at my daily gig. Instead of a quick win, it turns into a battle of  words that serves no purpose ' +
