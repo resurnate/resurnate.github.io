@@ -1,26 +1,24 @@
 const galleryElementId = 'gallery';
-let stripCounter = 0;
-let loadMoreStrips = false;
+let stripIndexStart = 0;
+let stripIndexEnd = 0;
+let loadMoreStripsBefore = true;
+let loadMoreStripsAfter = true;
 
-function loadGalleryStrips(onLoad) {
-  loadMoreStrips = false; // Let's be cautious!
-  if (onLoad) { loadGalleryStripCounter(); }
-  loadGalleryStrip(stripCounter);
-  loadGalleryStrip(stripCounter);
-  loadGalleryStrip(stripCounter);
-  loadGalleryStrip(stripCounter);
-  if (stripCounter < galleryMetadata.length) {
-    loadMoreStrips = true;
-  }
+function loadGalleryStrips() {
+  // Load strip start and end indexes
+  loadGalleryStripIndexes();
+  // Batch load some strips
+  loadGalleryStripsBatch(false, 4);
 }
 
-function loadGalleryStripCounter() {
+function loadGalleryStripIndexes() {
   let id = loadGalleryStripId();
   if (id > 0) {
-    for (let index = 0; index < galleryMetadata.length; index++) {
-      let strip = galleryMetadata[index];
+    for (let i = 0; i < galleryMetadata.length; i++) {
+      let strip = galleryMetadata[i];
       if (id === strip.id) {
-        stripCounter = index;
+        stripIndexStart = (i > 0) ? i - 1 : 0;
+        stripIndexEnd = i;
         break;
       }
     }
@@ -39,50 +37,91 @@ function loadGalleryStripId() {
 }
 
 function loadMoreGalleryStrips() {
-  if (loadMoreStrips) {
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      // At the bottom of the page
-      loadGalleryStrips(false);
+  if (loadMoreStripsBefore && (scrollY === 0)) {
+    // At the top of the page
+    loadGalleryStripsBatch(true, 1);
+  } else if (loadMoreStripsAfter && ((window.innerHeight + window.scrollY) >= document.body.scrollHeight)) {
+    // At the bottom of the page
+    loadGalleryStripsBatch(false, 4);
+  }
+}
+
+function loadGalleryStripsBatch(isReverse, count) {
+  if (loadMoreStripsBefore || loadMoreStripsAfter) {
+    // Let's be cautious!
+    loadMoreStripsBefore = false;
+    loadMoreStripsAfter = false;
+    // Load a maximum of count scripts (if available)
+    for (let i = 0; i < count; i++) {
+      if (isReverse && (stripIndexStart >= 0)) {
+        loadGalleryStrip(isReverse, stripIndexStart);
+        stripIndexStart -= 1;
+      } else if (!isReverse && (stripIndexEnd < galleryMetadata.length)) {
+        loadGalleryStrip(isReverse, stripIndexEnd);
+        stripIndexEnd += 1;
+      }
+    }
+    // Any more scripts to load?
+    if (stripIndexStart < 0) {
+      loadGalleryBoundary(true);
+    } else {
+      loadMoreStripsBefore = true;
+    }
+    if (stripIndexEnd >= (galleryMetadata.length)) {
+      loadGalleryBoundary(false);
+    } else {
+      loadMoreStripsAfter = true;
     }
   }
 }
 
-function loadGalleryStrip(index) {
-  let galleryElement = document.getElementById(galleryElementId);
-  if (index < galleryMetadata.length) {
-    // Keep going down the rabbit hole!
-    let strip = galleryMetadata[index];
-    let brElement = document.createElement('br');
-    galleryElement.appendChild(brElement);
+function loadGalleryStrip(isReverse, index) {
+  let strip = galleryMetadata[index];
+  let stripElement = document.getElementById(strip.id);
+  if (!stripElement) {
     let divElement = document.createElement('div');
     divElement.id = strip.id;
     divElement.className = 'galleryStrip';
-    galleryElement.appendChild(divElement);
     let innerH2Element = document.createElement('h2');
     innerH2Element.innerText = strip.title;
-    divElement.appendChild(innerH2Element);
+    divElement.append(innerH2Element);
     let innerImgElement = document.createElement('img');
     innerImgElement.src = '/img/' + strip.image;
     innerImgElement.alt = strip.title;
-    divElement.appendChild(innerImgElement);
+    divElement.append(innerImgElement);
     let innerDivElement = document.createElement('div');
-    divElement.appendChild(innerDivElement);
+    divElement.append(innerDivElement);
     let innerDivPElement = document.createElement('p');
     innerDivPElement.innerHTML = strip.description;
-    innerDivElement.appendChild(innerDivPElement);
-    stripCounter++;
+    innerDivElement.append(innerDivPElement);
+    let galleryElement = document.getElementById(galleryElementId);
+    if (isReverse) {
+      galleryElement.prepend(divElement);
+    } else {
+      galleryElement.append(divElement);
+    }
   }
-  if (stripCounter === galleryMetadata.length) {
-    // No more strips in gallery!
+}
+
+function loadGalleryBoundary(isStart) {
+  let boundaryElementId = isStart ? galleryElementId+'Start' : galleryElementId+'End';
+  let boundaryElement = document.getElementById(boundaryElementId);
+  if (!boundaryElement) {
     let brElement = document.createElement('br');
-    galleryElement.appendChild(brElement);
     let divElement = document.createElement('div');
-    divElement.id = galleryElementId+'End';
-    divElement.className = galleryElementId+'End';
-    galleryElement.appendChild(divElement);
+    divElement.id = boundaryElementId;
+    divElement.className = galleryElementId + 'Boundary';
     let innerPElement = document.createElement('p');
-    innerPElement.innerText = 'End of gallery';
-    divElement.appendChild(innerPElement);
-    stripCounter++;
+    divElement.append(innerPElement);
+    let galleryElement = document.getElementById(galleryElementId);
+    if (isStart) {
+      innerPElement.innerText = 'Start of gallery';
+      galleryElement.prepend(divElement);
+      // galleryElement.prepend(brElement);
+    } else {
+      innerPElement.innerText = 'End of gallery';
+      // galleryElement.append(brElement);
+      galleryElement.append(divElement);
+    }
   }
 }

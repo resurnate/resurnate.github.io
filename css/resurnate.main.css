@@ -39,7 +39,7 @@ h1 {
   text-justify: inter-word;
 }
 
-.galleryEnd p {
+.galleryBoundary p {
   background: #898d8d;
   color: white;
   font-size: 20px;
