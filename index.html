@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Resurnate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Resurnate</title>
+  <link rel="stylesheet" href="/css/resurnate.main.css">
 </head>
-<body>
-
-<h1>Resurnate</h1>
-
-<div>
-    <h2>Experience Meet Team</h2>
-    <img src="./img/ExperienceMeetTeam.png" alt="Experience Meet Team" width="1000" height="1000">
-</div>
-
-<div>
-    <h2>The Sound Of Silence</h2>
-    <img src="./img/TheSoundOfSilence.png" alt="The Sound Of Silence" width="1000" height=1000">
-</div>
-
+<body onload="loadGalleryStrips()" onscroll="loadMoreGalleryStrips()">
+  <div class="header">
+    <h1>Resurnate</h1>
+  </div>
+  <div id="gallery"></div>
+  <script type="text/javascript" src="/js/resurnate.main.js"></script>
+  <script type="text/javascript" src="/js/resurnate.metadata.js"></script>
 </body>
 </html>
