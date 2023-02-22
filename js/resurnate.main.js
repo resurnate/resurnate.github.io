@@ -23,13 +23,16 @@ function loadMoreGalleryStrips() {
 }
 
 function loadGalleryStrip(index) {
+  let galleryElement = document.getElementById(galleryElementId);
   if (index < galleryMetadata.length) {
+    // Keep going down the rabbit hole!
     let strip = galleryMetadata[index];
+    let brElement = document.createElement('br');
+    galleryElement.appendChild(brElement);
     let divElement = document.createElement('div');
     divElement.id = 'strip' + index;
     divElement.className = 'galleryStrip';
-    let innerBrElement = document.createElement('br');
-    divElement.appendChild(innerBrElement);
+    galleryElement.appendChild(divElement);
     let innerH2Element = document.createElement('h2');
     innerH2Element.innerText = strip.title;
     divElement.appendChild(innerH2Element);
@@ -37,16 +40,24 @@ function loadGalleryStrip(index) {
     innerImgElement.src = '/img/' + strip.name;
     innerImgElement.alt = strip.title;
     divElement.appendChild(innerImgElement);
-    document.getElementById(galleryElementId).appendChild(divElement);
+    let innerDivElement = document.createElement('div');
+    divElement.appendChild(innerDivElement);
+    let innerDivPElement = document.createElement('p');
+    innerDivPElement.innerHTML = strip.description;
+    innerDivElement.appendChild(innerDivPElement);
     stripCounter++;
-  } else if (index === galleryMetadata.length) {
+  }
+  if (stripCounter === galleryMetadata.length) {
+    // No more strips in gallery!
+    let brElement = document.createElement('br');
+    galleryElement.appendChild(brElement);
     let divElement = document.createElement('div');
     divElement.id = galleryElementId+'End';
     divElement.className = galleryElementId+'End';
+    galleryElement.appendChild(divElement);
     let innerPElement = document.createElement('p');
     innerPElement.innerText = 'End of gallery';
     divElement.appendChild(innerPElement);
-    document.getElementById(galleryElementId).appendChild(divElement);
     stripCounter++;
-  } // Else, move along, nothing more to see here!
+  }
 }

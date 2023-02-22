@@ -15,7 +15,7 @@ h1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 95%;
+  max-width: 98%;
 }
 
 .galleryStrip h2 {
@@ -24,6 +24,19 @@ h1 {
 
 .galleryStrip img {
   width: 100%;
+}
+
+.galleryStrip div {
+  border: 2px groove #41b6e6;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  max-width: 100%;
+}
+
+.galleryStrip div p {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .galleryEnd p {
