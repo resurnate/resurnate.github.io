@@ -11,31 +11,29 @@ h1 {
   text-align: center;
 }
 
-.galleryStrip {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 98%;
-}
-
-.galleryStrip h2 {
-  float: left;
-}
-
-.galleryStrip img {
-  width: 100%;
-}
-
 .galleryStrip div {
   padding: 10px;
 }
 
-.galleryStrip div i {
+.stripHeader h2 {
+  float: left;
+}
+
+.stripHeader p {
+  display: inline-block;
+  float: right;
+}
+
+.stripImage img {
+  width: 100%;
+}
+
+.stripQuote i {
   border-color: #41b6e6;
   color: #41b6e6;
 }
 
-.galleryStrip div p {
+.stripQuote p {
   text-align: justify;
   text-justify: inter-word;
 }
@@ -44,6 +42,7 @@ h1 {
   background: #898d8d;
   color: white;
   font-size: 20px;
-  padding: 40px;
+  padding: 10px;
   text-align: center;
+  max-width: 100%;
 }
