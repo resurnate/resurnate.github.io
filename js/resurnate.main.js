@@ -21,21 +21,37 @@ function loadStripDiv(index) {
     let divElement = document.createElement('div');
     divElement.id = strip.id;
     divElement.className = 'galleryStrip';
-    let innerH2Element = document.createElement('h2');
-    innerH2Element.innerText = strip.title;
-    divElement.append(innerH2Element);
-    let innerImgElement = document.createElement('img');
-    innerImgElement.src = '/img/' + strip.image;
-    innerImgElement.alt = strip.title;
-    divElement.append(innerImgElement);
-    let innerDivElement = document.createElement('div');
-    divElement.append(innerDivElement);
-    let innerIElement = document.createElement('i');
-    innerIElement.className="fa-solid fa-quote-left fa-3x fa-border fa-pull-left";
-    innerDivElement.append(innerIElement);
-    let innerDivPElement = document.createElement('p');
-    innerDivPElement.innerHTML = strip.description;
-    innerDivElement.append(innerDivPElement);
+    // Header
+    let headerDivElement = document.createElement('div');
+    headerDivElement.className = 'stripHeader';
+    let headerH2Element = document.createElement('h2');
+    headerH2Element.innerText = strip.title;
+    headerDivElement.append(headerH2Element);
+    let headerPElement = document.createElement('p');
+    let headerIElement = document.createElement('i');
+    headerIElement.className = 'fa-brands fa-facebook-square fa-2x';
+    headerIElement.style = 'color: #1877F2';
+    headerPElement.append(headerIElement);
+    headerDivElement.append(headerPElement);
+    divElement.append(headerDivElement);
+    // Image
+    let imageDivElement = document.createElement('div');
+    imageDivElement.className = 'stripImage';
+    let imageImgElement = document.createElement('img');
+    imageImgElement.src = '/img/' + strip.image;
+    imageImgElement.alt = strip.title;
+    imageDivElement.append(imageImgElement);
+    divElement.append(imageDivElement);
+    // Quote
+    let quoteDivElement = document.createElement('div');
+    quoteDivElement.className = 'stripQuote';
+    let quoteIElement = document.createElement('i');
+    quoteIElement.className = 'fa-solid fa-quote-left fa-3x fa-border fa-pull-left';
+    quoteDivElement.append(quoteIElement);
+    let quotePElement = document.createElement('p');
+    quotePElement.innerHTML = strip.description;
+    quoteDivElement.append(quotePElement);
+    divElement.append(quoteDivElement);
     return divElement;
   }
   return undefined;
@@ -130,14 +146,14 @@ function loadGalleryBoundary(isStart) {
     let divElement = document.createElement('div');
     divElement.id = boundaryElementId;
     divElement.className = galleryElementId + 'Boundary';
-    let innerPElement = document.createElement('p');
-    divElement.append(innerPElement);
+    let pElement = document.createElement('p');
+    divElement.append(pElement);
     let galleryElement = document.getElementById(galleryElementId);
     if (isStart) {
-      innerPElement.innerText = 'Start of gallery';
+      pElement.innerText = 'Start of gallery';
       galleryElement.prepend(divElement);
     } else {
-      innerPElement.innerText = 'End of gallery';
+      pElement.innerText = 'End of gallery';
       galleryElement.append(divElement);
     }
   }
