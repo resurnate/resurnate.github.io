@@ -30,6 +30,9 @@ function loadStripDiv(index) {
     divElement.append(innerImgElement);
     let innerDivElement = document.createElement('div');
     divElement.append(innerDivElement);
+    let innerIElement = document.createElement('i');
+    innerIElement.className="fa-solid fa-quote-left fa-3x fa-border fa-pull-left";
+    innerDivElement.append(innerIElement);
     let innerDivPElement = document.createElement('p');
     innerDivPElement.innerHTML = strip.description;
     innerDivElement.append(innerDivPElement);
