@@ -4,28 +4,67 @@ let stripIndexEnd = 0;
 let loadMoreStripsBefore = true;
 let loadMoreStripsAfter = true;
 
+function loadStripIndex(id) {
+  for (let i = 0; i < galleryMetadata.length; i++) {
+    let strip = galleryMetadata[i];
+    if (id === strip.id) {
+      return i;
+    }
+  }
+  return 0;
+}
+
+function loadStripDiv(index) {
+  let strip = galleryMetadata[index];
+  let stripElement = document.getElementById(strip.id);
+  if (!stripElement) {
+    let divElement = document.createElement('div');
+    divElement.id = strip.id;
+    divElement.className = 'galleryStrip';
+    let innerH2Element = document.createElement('h2');
+    innerH2Element.innerText = strip.title;
+    divElement.append(innerH2Element);
+    let innerImgElement = document.createElement('img');
+    innerImgElement.src = '/img/' + strip.image;
+    innerImgElement.alt = strip.title;
+    divElement.append(innerImgElement);
+    let innerDivElement = document.createElement('div');
+    divElement.append(innerDivElement);
+    let innerDivPElement = document.createElement('p');
+    innerDivPElement.innerHTML = strip.description;
+    innerDivElement.append(innerDivPElement);
+    return divElement;
+  }
+  return undefined;
+}
+
+function loadStrip(id) {
+  let index = loadStripIndex(id);
+  let divElement = loadStripDiv(index);
+  if (divElement) {
+    document.getElementById(galleryElementId).append(divElement);
+  }
+}
+
 function loadGalleryStrips() {
   // Load strip start and end indexes
-  loadGalleryStripIndexes();
+  loadGalleryStripsIndexes();
   // Batch load some strips
   loadGalleryStripsBatch(false, 4);
 }
 
-function loadGalleryStripIndexes() {
-  let id = loadGalleryStripId();
+function loadGalleryStripsIndexes() {
+  let id = loadGalleryStripsId();
   if (id > 0) {
-    for (let i = 0; i < galleryMetadata.length; i++) {
-      let strip = galleryMetadata[i];
-      if (id === strip.id) {
-        stripIndexStart = (i > 0) ? i - 1 : 0;
-        stripIndexEnd = i;
-        break;
-      }
+    let index = loadStripIndex(id);
+    if (index > 0) {
+        stripIndexStart = index - 1;
+        stripIndexEnd = index;
     }
   }
 }
 
-function loadGalleryStripId() {
+function loadGalleryStripsId() {
   let urlSplit = window.location.href.split('#');
   if (urlSplit.length > 1) {
     let anchorId = urlSplit[1];
@@ -54,10 +93,16 @@ function loadGalleryStripsBatch(isReverse, count) {
     // Load a maximum of count scripts (if available)
     for (let i = 0; i < count; i++) {
       if (isReverse && (stripIndexStart >= 0)) {
-        loadGalleryStrip(isReverse, stripIndexStart);
+        let divElement = loadStripDiv(stripIndexStart);
+        if (divElement) {
+          document.getElementById(galleryElementId).prepend(divElement);
+        }
         stripIndexStart -= 1;
       } else if (!isReverse && (stripIndexEnd < galleryMetadata.length)) {
-        loadGalleryStrip(isReverse, stripIndexEnd);
+        let divElement = loadStripDiv(stripIndexEnd);
+        if (divElement) {
+          document.getElementById(galleryElementId).append(divElement);
+        }
         stripIndexEnd += 1;
       }
     }
@@ -71,34 +116,6 @@ function loadGalleryStripsBatch(isReverse, count) {
       loadGalleryBoundary(false);
     } else {
       loadMoreStripsAfter = true;
-    }
-  }
-}
-
-function loadGalleryStrip(isReverse, index) {
-  let strip = galleryMetadata[index];
-  let stripElement = document.getElementById(strip.id);
-  if (!stripElement) {
-    let divElement = document.createElement('div');
-    divElement.id = strip.id;
-    divElement.className = 'galleryStrip';
-    let innerH2Element = document.createElement('h2');
-    innerH2Element.innerText = strip.title;
-    divElement.append(innerH2Element);
-    let innerImgElement = document.createElement('img');
-    innerImgElement.src = '/img/' + strip.image;
-    innerImgElement.alt = strip.title;
-    divElement.append(innerImgElement);
-    let innerDivElement = document.createElement('div');
-    divElement.append(innerDivElement);
-    let innerDivPElement = document.createElement('p');
-    innerDivPElement.innerHTML = strip.description;
-    innerDivElement.append(innerDivPElement);
-    let galleryElement = document.getElementById(galleryElementId);
-    if (isReverse) {
-      galleryElement.prepend(divElement);
-    } else {
-      galleryElement.append(divElement);
     }
   }
 }
