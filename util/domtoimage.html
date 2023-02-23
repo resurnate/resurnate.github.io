@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM to Image</title>
+  <link rel="stylesheet" href="/css/resurnate.main.css">
+  <link rel="stylesheet" href="/util/dom-to-image.js">
+  <script type="text/javascript">
+    function domToImage() {
+      let node = document.getElementById('header');
+      domtoimage.toJpeg(node, { quality: 1.0 })
+        .then(function (dataUrl) {
+          let img = new Image();
+          img.src = dataUrl;
+          document.body.appendChild(img);
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    }
+  </script>
+</head>
+<body onload="domToImage();">
+  <div id="header" class="header">
+    <h1>Resurnate</h1>
+  </div>
+  <script type="text/javascript" src="/util/dom-to-image.js"></script>
+</body>
+</html>

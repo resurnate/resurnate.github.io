@@ -64,4 +64,20 @@
 
 #privacy p {
   color: black;
+  display: block;
+}
+
+#footer {
+  background: #41b6e6;
+  padding: 30px;
+  text-align: center;
+}
+
+#footer p {
+  color: white;
+  display: block;
+}
+
+#footer .copyright {
+  font-weight: bold;
 }
