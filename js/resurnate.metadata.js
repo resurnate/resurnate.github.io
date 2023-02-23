@@ -22,5 +22,12 @@ const galleryMetadata = [
         'beating up the photocopier because it was right there won&#39;t fly either. Sadly, I&#39;m running out of ' +
         'options. Is it a control thing? Is it just me? Surely I&#39;m not alone here. I&#39;m all ears, although ' +
         'they have taken a verbal beating of late. I&#39;m still staring down that photocopier &#128527;'
+  },
+  {
+    id:'2023000',
+    image:'template.png',
+    title:'Experimental Template',
+    description:'A template to experiment with changes.<br><br><br>I threw in a few extra blank lines for formatting ' +
+        'purposes.'
   }
 ];
