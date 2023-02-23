@@ -1,63 +1,99 @@
+a {
+  color: #003087;
+  text-decoration: none;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: black;
+}
+
 #header {
   background: #41b6e6;
-  color: white;
   padding: 30px;
   text-align: center;
 }
 
-.title {
+#header a,h2 {
+  color: white;
+}
+
+#header .title {
   font-size: 60px;
   text-shadow: 3px 3px #003087;
 }
 
-.caption {
+#header .caption {
 }
 
-.follow h3,p {
+#header .follow h3,p {
   display: inline-block;
   color: #003087;
+}
+
+#footer {
+  background: #41b6e6;
+  padding: 20px;
+  text-align: center;
+}
+
+#footer p {
+  color: white;
+  display: block;
+  font-size: 20px;
+}
+
+#footer .copyright {
+  font-weight: bold;
 }
 
 #gallery {
 }
 
-.galleryStrip div {
+#gallery .galleryStrip div {
   padding: 10px;
 }
 
-.galleryStrip h2,p {
+#gallery .galleryStrip h2,p {
   display: inline-block;
 }
 
-.stripHeader h2 {
+#gallery .stripHeader h2 {
   float: left;
 }
 
-.stripHeader p {
+#gallery .stripHeader p {
   float: right;
 }
 
-.stripImage img {
+#gallery .galleryStrip a {
+  color: black;
+}
+
+#gallery .stripImage img {
   width: 100%;
 }
 
-.stripQuote i {
+#gallery .stripQuote i {
   border-color: #41b6e6;
   color: #41b6e6;
 }
 
-.stripQuote {
+#gallery .stripQuote {
   text-align: justify;
   text-justify: inter-word;
 }
 
-.galleryBoundary {
+#gallery .galleryBoundary {
   background: #898d8d;
   padding: 10px;
   text-align: center;
 }
 
-.galleryBoundary span {
+#gallery .galleryBoundary span {
   color: white;
   font-size: 20px;
 }
@@ -65,19 +101,4 @@
 #privacy p {
   color: black;
   display: block;
-}
-
-#footer {
-  background: #41b6e6;
-  padding: 30px;
-  text-align: center;
-}
-
-#footer p {
-  color: white;
-  display: block;
-}
-
-#footer .copyright {
-  font-weight: bold;
 }

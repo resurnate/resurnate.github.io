@@ -25,17 +25,27 @@ function loadStripDiv(index) {
     let headerDivElement = document.createElement('div');
     headerDivElement.className = 'stripHeader';
     let headerH2Element = document.createElement('h2');
-    headerH2Element.innerText = strip.title;
+    let headerH2AElement = document.createElement('a');
+    headerH2AElement.href = '/comic/'+strip.id+'.html';
+    headerH2AElement.innerText = strip.title;
+    headerH2Element.append(headerH2AElement);
     headerDivElement.append(headerH2Element);
     let headerPElement = document.createElement('p');
-    let headerAElement = document.createElement('a');
-    headerAElement.target = '_blank';
-    headerAElement.href = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2Fcomic%2F'+strip.id+'&amp;src=sdkpreparse';
-    let headerIElement = document.createElement('i');
-    headerIElement.className = 'fa-brands fa-facebook-square fa-2x';
-    headerIElement.style = 'color: #1877F2';
-    headerAElement.append(headerIElement)
-    headerPElement.append(headerAElement);
+    let headerCommentAElement = document.createElement('a');
+    headerCommentAElement.href = '/comic/'+strip.id+'.html#comments';
+    let headerCommentIElement = document.createElement('i');
+    headerCommentIElement.className = 'fa-regular fa-comment fa-2x fa-fw';
+    headerCommentIElement.style = 'color: #1877F2';
+    headerCommentAElement.append(headerCommentIElement)
+    headerPElement.append(headerCommentAElement);
+    let headerFacebookAElement = document.createElement('a');
+    headerFacebookAElement.target = '_blank';
+    headerFacebookAElement.href = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.resurnate.com%2Fcomic%2F'+strip.id+'&amp;src=sdkpreparse';
+    let headerFacebookIElement = document.createElement('i');
+    headerFacebookIElement.className = 'fa-brands fa-facebook-square fa-2x';
+    headerFacebookIElement.style = 'color: #1877F2';
+    headerFacebookAElement.append(headerFacebookIElement)
+    headerPElement.append(headerFacebookAElement);
     headerDivElement.append(headerPElement);
     divElement.append(headerDivElement);
     // Image
