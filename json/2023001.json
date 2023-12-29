@@ -1,0 +1,237 @@
+{
+  "version": "1",
+  "id": "2023001",
+  "title": "Experience, Meet Team",
+  "author": "Quigley",
+  "panels": [
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Just going to pump",
+            "out some boilerplate",
+            "crap I've done a thousand",
+            "times before..."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Motivated)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Awesome! Moving on."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "20 minutes later"
+          ]
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Chuffed)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Oh by the way, I knocked",
+            "out some of the usual",
+            "stuff in the project",
+            "yesterday."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "During the next",
+            "standup..."
+          ]
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me to Team",
+            "(Casually)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "speech3",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Do we even",
+            "need it?"
+          ]
+        },
+        {
+          "position": 2,
+          "text": [
+            "Did we",
+            "agree to this",
+            "as a team?"
+          ]
+        },
+        {
+          "position": 3,
+          "text": [
+            "I can't find",
+            "that story in",
+            "the backlog!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 3,
+          "text": [
+            "Team",
+            "(Swarm of hornets)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Sigh! I shouldn't",
+            "but fuck it..."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Bewildered)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "burst1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Countless",
+            "back-and-forths",
+            "defending some",
+            "inane industry-standard",
+            "thing to people, because...",
+            "arrrrggghh",
+            "what the living",
+            "fuck!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "2 hours later"
+          ]
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me to team",
+            "(DEFCON 2)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": [
+            "Team to me",
+            "(Contrary)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "We should setup",
+            "a meeting",
+            "to discuss further."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "Still in the 15",
+            "minute standup..."
+          ]
+        },
+        {
+          "position": 3,
+          "text": [
+            "Team",
+            "(Conceited)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "When",
+            "will I",
+            "ever",
+            "learn!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Dying on sword)"
+          ]
+        }
+      ]
+    }
+  ]
+}
