@@ -2,7 +2,7 @@ const galleryMetadata = [
   {
     id:'2023002',
     image:'2023002.png',
-    title:'Encounters With Death',
+    title:'The Equalizer',
     description:'I&#39;m fairly certain anyone that isn&#39;t a hermit living under a rock, can relate. However, ' +
         'this does seem to impact the fairer sex more. I&#39;ll leave that up to you to decide who that fairer sex ' +
         'is... shots fired! Unfortunately, this is exactly what happened the other night, with &#34;It&#39;s called ' +

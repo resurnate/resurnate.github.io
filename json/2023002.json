@@ -1,0 +1,267 @@
+{
+  "id": "2023002",
+  "version": "1",
+  "title": "The Equalizer",
+  "author": "Quigley",
+  "panels": [
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Hello pillow,",
+            "my old friend"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "Bedtime"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Winding down)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "I've come to",
+            "sleep with you",
+            "again"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "Pillow fort",
+            "complete"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Comfortable)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "whisper1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Night baby..."
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "All is dark"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me to partner",
+            "(lovingly)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "I've got to pee!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": []
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": []
+        },
+        {
+          "position": 4,
+          "text": [
+            "Partner to me",
+            "(Tosses and turns)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Damn it!",
+            "The fucking",
+            "toilet seat",
+            "is up...",
+            "",
+            "AGAIN!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "It's very",
+            "dark"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(stupefied)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": [
+            "Partner to me",
+            "(irritated)"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "Surely some",
+            "technology exists",
+            "to address that"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "It's still dark"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me to partner",
+            "(last rites)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "burst1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "It's called a",
+            "",
+            "fucking",
+            "",
+            "arm!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": [
+            "Am i",
+            "dead?"
+          ]
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me",
+            "(Last breath)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": [
+            "Partner to me",
+            "(Snidely)"
+          ]
+        }
+      ]
+    }
+  ]
+}
