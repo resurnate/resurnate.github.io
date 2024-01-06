@@ -1,7 +1,7 @@
 {
-  "id": "2023002",
+  "id": "2024001",
   "version": "1",
-  "title": "Home Front Disorder",
+  "title": "Gone Vaccinated",
   "author": "Quigley",
   "panels": [
     {
@@ -10,8 +10,11 @@
         {
           "position": 1,
           "text": [
-            "Hello pillow,",
-            "my old friend"
+            "Okie-dokie,",
+            "I'll just",
+            "upload",
+            "these",
+            "photos"
           ]
         }
       ],
@@ -19,7 +22,7 @@
         {
           "position": 1,
           "text": [
-            "Bedtime"
+            "On TikTok"
           ]
         },
         {
@@ -30,7 +33,7 @@
           "position": 3,
           "text": [
             "Me",
-            "(Winding down)"
+            "(Creative)"
           ]
         },
         {
@@ -45,19 +48,50 @@
         {
           "position": 1,
           "text": [
-            "I've come to",
-            "sleep with you",
-            "again"
+            "Hmmmm,",
+            "This background",
+            "music shouldn't",
+            "be too",
+            "distracting"
           ]
         }
       ],
       "captions": [
         {
           "position": 1,
+          "text": []
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": []
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "thought1",
+      "bubbles": [
+        {
+          "position": 1,
           "text": [
-            "Pillow fort",
-            "complete"
+            "mwahahaha",
+            "this",
+            "description",
+            "kills it!"
           ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": []
         },
         {
           "position": 2,
@@ -67,7 +101,7 @@
           "position": 3,
           "text": [
             "Me",
-            "(Comfortable)"
+            "(Witty)"
           ]
         },
         {
@@ -77,46 +111,14 @@
       ]
     },
     {
-      "image": "whisper1",
+      "image": "thought1",
       "bubbles": [
         {
           "position": 1,
           "text": [
-            "Night baby..."
-          ]
-        }
-      ],
-      "captions": [
-        {
-          "position": 1,
-          "text": [
-            "All is dark"
-          ]
-        },
-        {
-          "position": 2,
-          "text": []
-        },
-        {
-          "position": 3,
-          "text": [
-            "Me to partner",
-            "(lovingly)"
-          ]
-        },
-        {
-          "position": 4,
-          "text": []
-        }
-      ]
-    },
-    {
-      "image": "speech1",
-      "bubbles": [
-        {
-          "position": 1,
-          "text": [
-            "I've got to pee!"
+            "Release",
+            "the",
+            "kraken"
           ]
         }
       ],
@@ -124,46 +126,6 @@
         {
           "position": 1,
           "text": []
-        },
-        {
-          "position": 2,
-          "text": []
-        },
-        {
-          "position": 3,
-          "text": []
-        },
-        {
-          "position": 4,
-          "text": [
-            "Partner to me",
-            "(Tosses and turns)"
-          ]
-        }
-      ]
-    },
-    {
-      "image": "speech1",
-      "bubbles": [
-        {
-          "position": 1,
-          "text": [
-            "Damn it!",
-            "The fucking",
-            "toilet seat",
-            "is up...",
-            "",
-            "AGAIN!"
-          ]
-        }
-      ],
-      "captions": [
-        {
-          "position": 1,
-          "text": [
-            "It's very",
-            "dark"
-          ]
         },
         {
           "position": 2,
@@ -173,27 +135,24 @@
           "position": 3,
           "text": [
             "Me",
-            "(stupefied)"
+            "(Smugly)"
           ]
         },
         {
           "position": 4,
-          "text": [
-            "Partner to me",
-            "(irritated)"
-          ]
+          "text": []
         }
       ]
     },
     {
-      "image": "speech1",
+      "image": "thought1",
       "bubbles": [
         {
           "position": 1,
           "text": [
-            "Surely some",
-            "technology exists",
-            "to address that"
+            "Oh boy,",
+            "oh boy,",
+            "oh boy"
           ]
         }
       ],
@@ -201,18 +160,22 @@
         {
           "position": 1,
           "text": [
-            "It's still dark"
+            "A wee bit",
+            "later..."
           ]
         },
         {
           "position": 2,
-          "text": []
+          "text": [
+            "Receives",
+            "Notification"
+          ]
         },
         {
           "position": 3,
           "text": [
-            "Me to partner",
-            "(last rites)"
+            "Me",
+            "(Excited)"
           ]
         },
         {
@@ -227,21 +190,18 @@
         {
           "position": 1,
           "text": [
-            "It's called a",
+            "Babe...",
             "",
-            "fucking",
-            "",
-            "arm!"
+            "I've",
+            "gone",
+            "viral!"
           ]
         }
       ],
       "captions": [
         {
           "position": 1,
-          "text": [
-            "Am i",
-            "dead?"
-          ]
+          "text": []
         },
         {
           "position": 2,
@@ -250,15 +210,85 @@
         {
           "position": 3,
           "text": [
-            "Me",
-            "(Last breath)"
+            "Me to partner",
+            "(Proudly)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "speech1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "1000 views,",
+            "4 followers,",
+            "and",
+            "3 likes"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": []
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Me to Partner",
+            "(Accomplished)"
+          ]
+        },
+        {
+          "position": 4,
+          "text": []
+        }
+      ]
+    },
+    {
+      "image": "burst1",
+      "bubbles": [
+        {
+          "position": 1,
+          "text": [
+            "More",
+            "like",
+            "Gone",
+            "Vaccinated!"
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "position": 1,
+          "text": []
+        },
+        {
+          "position": 2,
+          "text": []
+        },
+        {
+          "position": 3,
+          "text": [
+            "Partner to Me",
+            "(Curtly)"
           ]
         },
         {
           "position": 4,
           "text": [
-            "Partner to me",
-            "(Snidely)"
+            "Me",
+            "(Vanquished)"
           ]
         }
       ]
