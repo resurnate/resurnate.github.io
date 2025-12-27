@@ -267,8 +267,9 @@ function renderTable(data) {
     const format = (val) => parseFloat(val) === 0 ? 'N/A' : `$${Number(val).toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     let html = `<table><thead><tr><th>Year</th><th>Status</th><th>Balance</th><th>Gross/Mo</th><th>Tax/Mo</th><th>Net/Mo</th></tr></thead><tbody>`;
     data.forEach(row => {
+        const year = row.year + 2025;
         const statusClass = row.grossMonthly > 0 ? "withdrawing" : "growing";
-        html += `<tr><td>${row.year}</td><td><span class="status-badge ${statusClass}">${row.status}</span></td>
+        html += `<tr><td>${year}</td><td><span class="status-badge ${statusClass}">${row.status}</span></td>
         <td>$${Number(row.balance).toLocaleString()}</td><td>${format(row.grossMonthly)}</td><td>${format(row.taxMonthly)}</td><td>${format(row.netMonthly)}</td></tr>`;
     });
     document.getElementById('resultsTableContainer').innerHTML = html + "</tbody></table>";
