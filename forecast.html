@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Forecaster: Compound vs. Fixed Annuity (Table Only)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 20px auto; background-color: #f8f9fa; padding: 0 15px; }
+        .dashboard { display: grid; grid-template-columns: 320px 1fr; gap: 25px; }
+        .panel { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 4px; font-weight: bold; font-size: 0.85em; }
+        input, select, button { padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        button { cursor: pointer; font-weight: bold; margin-top: 5px; }
+        .btn-primary { background-color: #007bff; color: white; border: none; }
+        .btn-summary { background-color: #6f42c1; color: white; border: none; margin-top: 10px; }
+        .btn-danger { background-color: #dc3545; color: white; border: none; }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 0.9em; margin-top: 20px; }
+        th, td { border: 1px solid #eee; padding: 10px; text-align: right; }
+        th { background-color: #f1f3f5; text-align: center; }
+        .status-badge { padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+        .withdrawing { background-color: #ffdce0; color: #af233a; }
+        .growing { background-color: #d1e7dd; color: #0f5132; }
+    </style>
+</head>
+<body>
+
+    <h1>Financial Forecaster (Table View Only)</h1>
+
+    <div class="dashboard">
+        <div class="panel">
+            <h3 id="formTitle">Add/Edit Portfolio</h3>
+            <div class="input-group">
+                <label>Account Type</label>
+                <select id="pType" onchange="toggleTypeFields()">
+                    <option value="compound">Compound Interest Account</option>
+                    <option value="annuity">Fixed Payout Annuity (Pension/SS)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Portfolio Name</label>
+                <input type="text" id="pName" placeholder="e.g. 401k or Social Security">
+            </div>
+
+            <div id="compoundFields">
+                <div class="input-group">
+                    <label>Initial Principal ($)</label>
+                    <input type="number" id="pPrincipal" value="10000">
+                </div>
+                <div class="input-group">
+                    <label>Annual Interest Rate (%)</label>
+                    <input type="number" id="pRate" value="7" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>Monthly Contribution ($)</label>
+                    <input type="number" id="pContrib" value="500">
+                </div>
+                <div class="input-group">
+                    <label>Contribution Stop Year</label>
+                    <input type="number" id="pStopYear" value="10">
+                </div>
+            </div>
+
+            <div id="annuityFields" style="display:none;">
+                <div class="input-group">
+                    <label>Fixed Monthly Payout ($)</label>
+                    <input type="number" id="pFixedPayout" value="2000">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Payout/Withdrawal Start Year</label>
+                <input type="number" id="pWithdrawYear" value="15">
+            </div>
+            <div class="input-group">
+                <label>Tax Rate (%)</label>
+                <input type="number" id="pTax" value="20">
+            </div>
+            <div class="input-group">
+                <label>Total Duration (Years)</label>
+                <input type="number" id="pTotalYears" value="25">
+            </div>
+
+            <button class="btn-primary" onclick="saveOrUpdatePortfolio()">Save Portfolio</button>
+            <button onclick="resetForm()">Clear/Add New</button>
+            <button class="btn-summary" onclick="showGlobalSummary()">View Global Summary</button>
+
+            <hr style="margin: 20px 0;">
+            <div style="box-shadow: none; padding: 0;">
+                <h3>Data Management</h3>
+                <div class="input-group">
+                    <button class="btn-primary" onclick="exportPortfolios()">Export Portfolios to JSON</button>
+                </div>
+                <div class="input-group">
+                    <label>Import Portfolios (Overwrites Current)</label>
+                    <input type="file" id="importFile" accept=".json" onchange="importPortfolios(event)">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel" style="display:flex; gap: 10px;">
+                <select id="portfolioDropdown" onchange="loadPortfolioForEditing(event.target.value)">
+                    <option value="">-- Select a Portfolio --</option>
+                </select>
+                <button class="btn-danger" style="width: auto;" onclick="deleteSelectedPortfolio()">Delete</button>
+            </div>
+            <div class="panel" id="displayPanel" style="display:none;">
+                <h3 id="currentPortfolioTitle">Forecast</h3>
+                <div id="resultsTableContainer"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+let portfolios = JSON.parse(localStorage.getItem('portfolios_v3')) || [];
+let currentEditingId = null;
+
+// --- State Management: Save/Update/Delete ---
+
+function saveOrUpdatePortfolio() {
+    const type = document.getElementById('pType').value;
+    const nameInput = document.getElementById('pName').value.trim() || "Unnamed";
+    
+    const formValues = {
+        id: currentEditingId || Date.now(), // Retain ID if editing, otherwise new ID
+        type: type,
+        name: nameInput,
+        withdrawYear: parseInt(document.getElementById('pWithdrawYear').value),
+        taxRate: parseFloat(document.getElementById('pTax').value) / 100,
+        totalYears: parseInt(document.getElementById('pTotalYears').value),
+        principal: parseFloat(document.getElementById('pPrincipal').value) || 0,
+        rate: (parseFloat(document.getElementById('pRate').value) || 0) / 100,
+        contrib: parseFloat(document.getElementById('pContrib').value) || 0,
+        stopYear: parseInt(document.getElementById('pStopYear').value) || 0,
+        fixedPayout: parseFloat(document.getElementById('pFixedPayout').value) || 0
+    };
+
+    // SEARCH FOR EXISTING: Use name for overwriting logic
+    const existingIndex = portfolios.findIndex(p => p.name.toLowerCase() === formValues.name.toLowerCase());
+
+    if (existingIndex > -1) {
+        // OVERWRITE: Portfolio with this name already exists
+        if (confirm(`A portfolio named "${formValues.name}" already exists. Overwrite it?`)) {
+            // Preserve the original ID if overwriting a different record by name
+            formValues.id = portfolios[existingIndex].id;
+            portfolios[existingIndex] = formValues;
+        } else {
+            return; // Cancel the save
+        }
+    } else if (currentEditingId !== null) {
+        // UPDATE: User is editing a portfolio but changed its name to a unique one
+        const idxById = portfolios.findIndex(p => p.id === currentEditingId);
+        if (idxById > -1) portfolios[idxById] = formValues;
+    } else {
+        // ADD NEW: Brand new name and brand new entry
+        portfolios.push(formValues);
+    }
+
+    localStorage.setItem('portfolios_v3', JSON.stringify(portfolios));
+    updateDropdown();
+    resetForm();
+    alert(`Portfolio "${formValues.name}" saved.`);
+}
+
+function deleteSelectedPortfolio() {
+    if (currentEditingId === null) {
+        alert("Please select a portfolio to delete.");
+        return;
+    }
+    
+    const pToDelete = portfolios.find(p => p.id === currentEditingId);
+    if (!confirm(`Are you sure you want to delete the portfolio: "${pToDelete.name}"?`)) return;
+
+    // Filter out the selected ID and update storage
+    portfolios = portfolios.filter(p => p.id !== currentEditingId);
+    localStorage.setItem('portfolios_v3', JSON.stringify(portfolios));
+    
+    resetForm();
+    updateDropdown();
+    document.getElementById('displayPanel').style.display = 'none';
+    alert("Portfolio deleted.");
+}
+
+// --- View/UI Helper Functions ---
+
+function toggleTypeFields() {
+    const type = document.getElementById('pType').value;
+    document.getElementById('compoundFields').style.display = type === 'compound' ? 'block' : 'none';
+    document.getElementById('annuityFields').style.display = type === 'annuity' ? 'block' : 'none';
+}
+
+function updateDropdown() {
+    const d = document.getElementById('portfolioDropdown');
+    d.innerHTML = '<option value="">-- Select a Portfolio --</option>' + 
+        portfolios.map((p, i) => `<option value="${i}">${p.name} (${p.type})</option>`).join('');
+}
+
+function resetForm() {
+    currentEditingId = null;
+    document.getElementById('formTitle').innerText = "Add New Portfolio";
+    document.getElementById('pName').value = "";
+    document.getElementById('pType').value = "compound";
+    toggleTypeFields();
+}
+
+function loadPortfolioForEditing(selectedIndex) {
+    if (selectedIndex === "") {
+        resetForm();
+        document.getElementById('displayPanel').style.display = 'none';
+        return;
+    }
+    const p = portfolios[selectedIndex];
+
+    document.getElementById('formTitle').innerText = `Edit: ${p.name}`;
+    document.getElementById('pName').value = p.name;
+    document.getElementById('pType').value = p.type;
+    toggleTypeFields();
+    document.getElementById('pPrincipal').value = p.principal;
+    document.getElementById('pRate').value = p.rate * 100;
+    document.getElementById('pContrib').value = p.contrib;
+    document.getElementById('pStopYear').value = p.stopYear;
+    document.getElementById('pWithdrawYear').value = p.withdrawYear;
+    document.getElementById('pTax').value = p.taxRate * 100;
+    document.getElementById('pTotalYears').value = p.totalYears;
+    document.getElementById('pFixedPayout').value = p.fixedPayout;
+    
+    currentEditingId = p.id;
+    viewPortfolio(selectedIndex);
+}
+
+// --- Logic for Table Forecast and Summary ---
+
+function calculateTimeline(p) {
+    let balance = p.principal;
+    const timeline = [];
+    for (let year = 1; year <= p.totalYears; year++) {
+        let grossMonthly = 0;
+        let isWithdrawing = year >= p.withdrawYear;
+        if (p.type === 'compound') {
+            let yearlyInterest = 0;
+            for (let m = 1; m <= 12; m++) {
+                if (year <= p.stopYear && !isWithdrawing) balance += p.contrib;
+                let interest = balance * (p.rate / 12);
+                yearlyInterest += interest;
+                if (!isWithdrawing) balance += interest;
+            }
+            grossMonthly = isWithdrawing ? yearlyInterest / 12 : 0;
+        } else {
+            balance = 0; 
+            grossMonthly = isWithdrawing ? p.fixedPayout : 0;
+        }
+        const taxMonthly = grossMonthly * p.taxRate;
+        timeline.push({
+            year,
+            status: isWithdrawing ? "Payout Phase" : "Waiting",
+            balance: balance.toFixed(2),
+            grossMonthly: grossMonthly.toFixed(2),
+            taxMonthly: taxMonthly.toFixed(2),
+            netMonthly: (grossMonthly - taxMonthly).toFixed(2)
+        });
+    }
+    return timeline;
+}
+
+function renderTable(data) {
+    const format = (val) => parseFloat(val) === 0 ? 'N/A' : `$${Number(val).toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    let html = `<table><thead><tr><th>Year</th><th>Status</th><th>Balance</th><th>Gross/Mo</th><th>Tax/Mo</th><th>Net/Mo</th></tr></thead><tbody>`;
+    data.forEach(row => {
+        const statusClass = row.grossMonthly > 0 ? "withdrawing" : "growing";
+        html += `<tr><td>${row.year}</td><td><span class="status-badge ${statusClass}">${row.status}</span></td>
+        <td>$${Number(row.balance).toLocaleString()}</td><td>${format(row.grossMonthly)}</td><td>${format(row.taxMonthly)}</td><td>${format(row.netMonthly)}</td></tr>`;
+    });
+    document.getElementById('resultsTableContainer').innerHTML = html + "</tbody></table>";
+}
+
+function viewPortfolio(idx) {
+    const p = portfolios[idx];
+    if (!p) return;
+    document.getElementById('displayPanel').style.display = "block";
+    document.getElementById('currentPortfolioTitle').innerText = `Forecast: ${p.name}`;
+    renderTable(calculateTimeline(p));
+}
+
+function showGlobalSummary() {
+    if (portfolios.length === 0) return alert("No portfolios found.");
+    const maxYears = Math.max(...portfolios.map(p => p.totalYears));
+    const global = Array.from({length: maxYears}, (_, i) => ({
+        year: i + 1, status: "Combined", balance: 0, grossMonthly: 0, taxMonthly: 0, netMonthly: 0
+    }));
+    portfolios.forEach(p => {
+        calculateTimeline(p).forEach((data, i) => {
+            if (i < maxYears) {
+                global[i].balance += parseFloat(data.balance);
+                global[i].grossMonthly += parseFloat(data.grossMonthly);
+                global[i].taxMonthly += parseFloat(data.taxMonthly);
+                global[i].netMonthly += parseFloat(data.netMonthly);
+            }
+        });
+    });
+    renderTable(global);
+    document.getElementById('currentPortfolioTitle').innerText = "Global Portfolio Summary";
+    document.getElementById('displayPanel').style.display = "block";
+}
+
+// --- Import/Export ---
+
+function exportPortfolios() {
+    const dataStr = JSON.stringify(portfolios, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `portfolios_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+}
+
+function importPortfolios(event) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const importedData = JSON.parse(e.target.result);
+        if (Array.isArray(importedData)) {
+            if (confirm("Replace all current portfolios with this file?")) {
+                portfolios = importedData;
+                localStorage.setItem('portfolios_v3', JSON.stringify(portfolios));
+                updateDropdown();
+                resetForm();
+            }
+        }
+    };
+    reader.readAsText(event.target.files[0]);
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+    updateDropdown();
+    toggleTypeFields();
+});
+</script>
+
+</body>
+</html>
+
